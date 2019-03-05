@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title></title>
+	    <script src="js/mui.min.js"></script>
+	    <link href="css/mui.min.css" rel="stylesheet"/>
+	    <script type="text/javascript" charset="utf-8">
+	      	mui.init();
+	    </script>
+
+		<style>
+			ul {
+				font-size: 14px;
+				color: #8f8f94;
+			}
+			.mui-btn {
+				padding: 10px;
+			}
+		</style>
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+				padding-bottom: 51px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title" id="title">课题名称</h1>
+			</div>
+		<div class="mui-content">
+			<nav class="mui-bar mui-bar-tab">  
+				<a class="mui-tab-item mui-active" href="activity.html">  
+					<span class="mui-icon mui-icon-plus"></span>  
+					<span class="mui-tab-label">活动</span>  
+				</a>   
+				<a class="mui-tab-item" href="chat.html">  
+					<span class="mui-icon mui-icon-chat"></span>  
+					<span class="mui-tab-label">群聊</span>  
+				</a>  
+			</nav>
+		</div>
+		<script type="text/javascript" charset="utf-8">
+		var subpages = ['activity.html','chat.html'];
+			var subpages_style={
+				top:'45px',
+				bottom:'51px'
+			};
+			var activeTab=subpages[0];//这里要更改
+			mui.plusReady(function(){
+				document.addEventListener('name2', function(e){
+    				document.getElementById('title').innerText=e.detail.name;
+				});
+				
+				var self=plus.webview.currentWebview();
+				for(i=0;i<subpages.length;i++){
+					var sub=plus.webview.create(subpages[i],subpages[i],subpages_style);
+					if(i>0){
+						sub.hide();
+					}
+					self.append(sub);
+				}
+			});
+			mui('.mui-bar-tab').on('tap','a',function(e){
+				var targetTab=this.getAttribute('href');
+				if(targetTab==activeTab) return ;
+				
+				plus.webview.show(targetTab);
+				plus.webview.hide(activeTab);
+				activeTab=targetTab;
+			});
+	    </script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/util.js"></script>
+		<script src="js/util.js">
+			mui.init({  
+				swipeBack:true //启用右滑关闭功能  
+			}); 
+		</script>
+	</body>
+
+</html>

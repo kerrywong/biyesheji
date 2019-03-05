@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>new webview</title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<body>
+		<script>
+			mui.init();
+		</script>
+		<ul class="mui-table-view" style="padding: 5px;">
+			<li class="mui-table-view-cell mui-collapse">
+				<a id="barcode_scan" href="barcode.html">进行签到</a>
+				</li>
+		</ul>
+		
+		<ul class="mui-table-view" style="padding: 5px;">
+			<li class="mui-table-view-cell mui-collapse">
+				<a>开始抢答</a>
+				
+			</li>
+		</ul>
+		<ul class="mui-table-view" style="padding: 5px;">
+			<li class="mui-table-view-cell mui-collapse">
+				<a>参与讨论</a>
+				
+			</li>
+		</ul>
+		<ul class="mui-table-view" style="padding: 5px;">
+			<li class="mui-table-view-cell mui-collapse">
+				<a>完成任务</a>
+				
+			</li>
+		</ul>
+		
+		<script type="text/javascript" charset="utf-8">
+			document.getElementById('barcode_scan').addEventListener('tap', function() {
+  //打开关于页面
+  			mui.openWindow({
+    		url: 'barcode.html', 
+    		id:'barcode'
+  });
+});
+		</script>
+</body>
+</html>

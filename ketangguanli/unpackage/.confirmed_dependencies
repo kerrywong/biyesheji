@@ -1,0 +1,74 @@
+{
+  "main.html": {
+    "refer": [
+      "setting.html",
+      "html/tab-webview-subpage-contact.html",
+      "html/tab-webview-subpage-chat.html",
+      "html/new-webview.html",
+      "html/my.html",
+      "html/message.html",
+      "html/classmate.html",
+      "html/home.html",
+      "html/contact.html",
+      "message.html",
+      "contact.html",
+      "home.html",
+      "my.html"
+    ],
+    "resources": [
+      "html/tab-webview-subpage-chat.html",
+      "html/new-webview.html",
+      "html/home.html",
+      "home.html"
+    ]
+  },
+  "login.html": {
+    "refer": [
+      "main.html",
+      "reg.html",
+      "forget_password.html"
+    ],
+    "resources": [
+      "images/sinaweibo.png"
+    ]
+  },
+  "html/home.html": {
+    "refer": [
+      "html/classroom.html"
+    ]
+  },
+  "html/classroom.html": {
+    "resources": [
+      "html/activity.html"
+    ],
+    "refer": [
+      "html/activity.html",
+      "html/chat.html"
+    ]
+  },
+  "home.html": {
+    "refer": [
+      "classroom.html"
+    ]
+  },
+  "classroom.html": {
+    "resources": [
+      "activity.html"
+    ],
+    "refer": [
+      "chat.html",
+      "activity.html"
+    ]
+  },
+  "activity.html": {
+    "refer": [
+      "barcode.html",
+      "enterchat.html",
+      "answer.html"
+    ],
+    "resources": [
+      "barcode.html",
+      "answer.html"
+    ]
+  }
+}

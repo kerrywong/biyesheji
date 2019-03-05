@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>new webview</title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="mui-content">
+			<img id="enter" src="images/enter.png" width="100%"/>
+		</div>
+		<script>
+			mui.init();
+		</script>
+		<ul class="mui-table-view" style="padding: 5px;">
+			<li class="mui-table-view-cell mui-collapse mui-active">
+				<a class="mui-navigate-right" href="">今天课程</a>
+				<div class="mui-collapse-content">
+					<font size="3" id="1-2">1-2节：无</font>
+				</div>
+				<div class="mui-collapse-content">
+					<font size="3" id="3-4">3-4节：无</font>
+				</div>
+				<div class="mui-collapse-content">
+					<font size="3" id="5-6">5-6节：无</font>
+				</div>
+				<div class="mui-collapse-content">
+					<font size="3" id="7-8">7-8节：无</font>
+				</div>
+				
+			</li>
+		</ul>
+		<ul class="mui-table-view" style="padding: 5px;">
+			<li class="mui-table-view-cell mui-collapse mui-active">
+				<a class="mui-navigate-right" href="">待交作业</a>
+				<div class="mui-collapse-content" id="work">
+				</div>
+				
+			</li>
+		</ul>
+		<script>
+			(function($, doc) {
+				$.plusReady(function() {
+					var settingPage = $.preload({
+						"id": 'classroom',
+						"url": 'classroom.html'
+					});
+					//设置
+					var settingButton = doc.getElementById('enter');
+					settingButton.addEventListener('tap', function(event) {
+						mui.ajax({
+									type : 'POST',
+									data:{'type_new':7},
+									url : "http://172.22.224.117/ketangguanli-houtai/EnterRoom.php",
+									dataType : 'json',
+									success : function(msg){
+												if(msg.isTrue){
+													mui.preload({
+														id: 'classroom',
+														url:'classroom.html',
+														show: {
+															aniShow: 'pop-in'
+														},
+//														extras: {    //extras里面的就是参数了
+//												                name: msg.name_class
+//												        },
+														styles: {
+															popGesture: 'hide'
+														},
+														waiting: {
+															autoShow: false
+														}
+													});
+													apage = plus.webview.getWebviewById("classroom");
+													mui.fire(apage,'name2',{
+														name: msg.name_class
+													});
+													apage.show();
+												}else{
+													mui.toast("现在没课 ");
+													mui.preload({
+														id: 'classroom',
+														url:'classroom.html',
+														show: {
+															aniShow: 'pop-in'
+														},
+//														extras: {    //extras里面的就是参数了
+//												                name: msg.name_class
+//												        },
+														styles: {
+															popGesture: 'hide'
+														},
+														waiting: {
+															autoShow: false
+														}
+													});
+													apage = plus.webview.getWebviewById("classroom");
+													mui.fire(apage,'name2',{
+														name: msg.name_class
+													});
+													apage.show();
+												}
+											},
+									error :function(xhr,type,errorThown){
+										mui.toast(type);
+									}
+									
+								});
+						
+					});
+				});
+			}(mui, document));
+		</script>
+		<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+				mui.ajax({
+					type : 'POST',
+					data:{'id_new':'16408100214'},
+					url : "http://172.22.224.117/ketangguanli-houtai/Home-mobile.php",
+					dataType : 'json',
+					success : function(msg){
+						for(var p in msg){
+							document.getElementById(p).innerHTML= p+"节："+msg[p];
+						}
+						
+					},
+					error :function(xhr,type,errorThown){
+						mui.toast(type);
+					}
+					
+				});
+				mui.ajax({
+					type : 'POST',
+					data:{'type_new':7},
+					url : "http://172.22.224.117/ketangguanli-houtai/New-mobile.php",
+					dataType : 'json',
+					success : function(msg){
+						for(var p in msg){
+							document.getElementById('work').innerHTML +="<div class='mui-collapse-content'  id='work'><font size='3'>"+msg[p]+"</font></div>";
+						}
+								
+						
+					},
+					error :function(xhr,type,errorThown){
+						mui.toast(type);
+					}
+					
+				});
+				
+		});
+	</script>
+</body>
+</html>
